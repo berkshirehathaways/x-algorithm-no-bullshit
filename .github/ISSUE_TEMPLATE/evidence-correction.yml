@@ -1,0 +1,48 @@
+name: Evidence correction
+description: Correct a claim, verdict, citation, or evidence boundary
+title: "evidence: "
+labels: ["evidence"]
+body:
+  - type: input
+    id: claim
+    attributes:
+      label: Claim ID
+      placeholder: current-ranker-22-score-terms
+    validations:
+      required: true
+  - type: dropdown
+    id: verdict
+    attributes:
+      label: Proposed verdict
+      options:
+        - confirmed-current
+        - legacy-only
+        - inferred
+        - unsupported
+        - unknown
+        - contradicted
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Commit-pinned primary-source URL
+      description: Include a full SHA and exact line range.
+    validations:
+      required: true
+  - type: textarea
+    id: correction
+    attributes:
+      label: What is wrong and what should change?
+      description: Separate source facts from your interpretation.
+    validations:
+      required: true
+  - type: checkboxes
+    id: boundaries
+    attributes:
+      label: Evidence boundaries
+      options:
+        - label: I am not presenting legacy values as current values.
+          required: true
+        - label: I am not treating absence from public source as proof of production absence.
+          required: true

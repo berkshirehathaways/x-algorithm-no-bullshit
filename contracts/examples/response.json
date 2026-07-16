@@ -1,0 +1,130 @@
+{
+  "schema_version": "x_post.optimize.v1",
+  "status": "ready",
+  "evidence_ledger": [
+    {
+      "claim_id": "current-ranker-22-score-terms",
+      "verdict": "confirmed-current",
+      "freshness": {
+        "checked_at": "2026-07-16",
+        "state": "fresh"
+      },
+      "allowed_wording": "The current public RankingScorer combines 22 named Phoenix score terms."
+    },
+    {
+      "claim_id": "runtime-ranking-weights-not-public-values",
+      "verdict": "confirmed-current",
+      "freshness": {
+        "checked_at": "2026-07-16",
+        "state": "fresh"
+      },
+      "allowed_wording": "The public RankingScorer reads score-term weights from runtime feature-switch parameters."
+    },
+    {
+      "claim_id": "current-numeric-ranking-weights",
+      "verdict": "unknown",
+      "freshness": {
+        "checked_at": "2026-07-16",
+        "state": "fresh"
+      },
+      "allowed_wording": "The bounded public snapshot does not establish the exact live numeric values."
+    }
+  ],
+  "hooks": [
+    {
+      "id": "public-boundary",
+      "text": "The useful lesson in the public For You code is its boundary: 22 named score terms, runtime parameters, and no established live numeric table.",
+      "angle": "public evidence boundary",
+      "claim_ids": [
+        "current-ranker-22-score-terms",
+        "runtime-ranking-weights-not-public-values",
+        "current-numeric-ranking-weights"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "boundary-first",
+      "text": "The public RankingScorer combines 22 named score terms and loads their weights from runtime feature-switch parameters. The bounded snapshot does not establish the live numeric values. Read the source for the boundary—not a production scorecard.",
+      "assertions": [
+        {
+          "text": "The public RankingScorer combines 22 named Phoenix score terms.",
+          "kind": "fact",
+          "claim_ids": ["current-ranker-22-score-terms"],
+          "verdicts": ["confirmed-current"]
+        },
+        {
+          "text": "The scorer loads those weights from runtime feature-switch parameters.",
+          "kind": "fact",
+          "claim_ids": ["runtime-ranking-weights-not-public-values"],
+          "verdicts": ["confirmed-current"]
+        },
+        {
+          "text": "The bounded snapshot does not establish their live numeric values.",
+          "kind": "inference",
+          "claim_ids": ["current-numeric-ranking-weights"],
+          "verdicts": ["unknown"]
+        }
+      ],
+      "action_affordances": ["Compare public code claims against their cited scope"],
+      "negative_feedback_review": {
+        "risk_level": "low",
+        "risks": ["Readers may mistake the named score terms for a complete description of production ranking."],
+        "mitigations": ["State the public-versus-production boundary in the same post."]
+      }
+    },
+    {
+      "id": "precision-first",
+      "text": "Twenty-two named score terms are visible in the public RankingScorer. Their weights come from runtime parameters. Their live numeric values are not established by this snapshot. Useful evidence, with a hard limit.",
+      "assertions": [
+        {
+          "text": "Twenty-two named score terms are visible in the public RankingScorer.",
+          "kind": "fact",
+          "claim_ids": ["current-ranker-22-score-terms"],
+          "verdicts": ["confirmed-current"]
+        },
+        {
+          "text": "Their weights come from runtime parameters.",
+          "kind": "fact",
+          "claim_ids": ["runtime-ranking-weights-not-public-values"],
+          "verdicts": ["confirmed-current"]
+        },
+        {
+          "text": "Their live numeric values are not established by this snapshot.",
+          "kind": "inference",
+          "claim_ids": ["current-numeric-ranking-weights"],
+          "verdicts": ["unknown"]
+        }
+      ],
+      "action_affordances": ["Invite readers to distinguish public evidence from production speculation"],
+      "negative_feedback_review": {
+        "risk_level": "low",
+        "risks": ["The concise opening could be read as dismissing the rest of the public architecture."],
+        "mitigations": ["Describe the claim as a bounded finding about RankingScorer."]
+      }
+    }
+  ],
+  "assumptions": [
+    {
+      "text": "The intended audience values source-linked technical claims over unsupported ranking folklore.",
+      "kind": "assumption"
+    }
+  ],
+  "rejections": [],
+  "launch_plan": {
+    "timing_rationale": "Publish during an active engineering discussion about public ranking-source interpretation.",
+    "distribution_boundaries": ["No engagement pods", "No repetitive replies", "No harassment"],
+    "reply_handling": "Answer substantive questions with the cited claim IDs and state the public-versus-production boundary."
+  },
+  "measurement_plan": {
+    "baseline": "Compare discussion quality with recent evidence-led technical posts of similar length.",
+    "observation_window": "48 hours",
+    "metrics": ["qualified replies", "saves", "shares"],
+    "causal_limit": "Observed engagement does not establish an algorithmic effect or predict future distribution."
+  },
+  "limitations": [
+    "Public source cannot deterministically score content because live weights, user context, production models, and experiments are unavailable.",
+    "The public RankingScorer evidence does not establish production-model equivalence."
+  ],
+  "extensions": {}
+}

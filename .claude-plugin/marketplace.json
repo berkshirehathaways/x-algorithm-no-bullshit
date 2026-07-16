@@ -1,0 +1,32 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "x-algorithm-no-bullshit",
+  "description": "Evidence-first agent skill and receipts for X's public For You algorithm.",
+  "owner": {
+    "name": "berkshirehathaways",
+    "url": "https://github.com/berkshirehathaways"
+  },
+  "plugins": [
+    {
+      "name": "x-algorithm-no-bullshit",
+      "version": "0.1.0",
+      "description": "Draft sharp X posts without mixing 2023 weights into 2026 claims or inventing reach scores.",
+      "category": "productivity",
+      "author": {
+        "name": "berkshirehathaways",
+        "url": "https://github.com/berkshirehathaways"
+      },
+      "homepage": "https://github.com/berkshirehathaways/x-algorithm-no-bullshit",
+      "source": "./",
+      "tags": [
+        "x",
+        "twitter",
+        "algorithm",
+        "for-you-feed",
+        "evidence",
+        "writing",
+        "agent-skill"
+      ]
+    }
+  ]
+}

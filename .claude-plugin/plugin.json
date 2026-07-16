@@ -1,0 +1,22 @@
+{
+  "name": "x-algorithm-no-bullshit",
+  "version": "0.1.0",
+  "description": "Evidence-first X post drafting with commit-pinned claims from the 2026 public For You source.",
+  "author": {
+    "name": "berkshirehathaways",
+    "url": "https://github.com/berkshirehathaways"
+  },
+  "homepage": "https://github.com/berkshirehathaways/x-algorithm-no-bullshit",
+  "repository": "https://github.com/berkshirehathaways/x-algorithm-no-bullshit",
+  "license": "MIT",
+  "keywords": [
+    "x",
+    "twitter",
+    "algorithm",
+    "for-you-feed",
+    "evidence",
+    "agent-skill",
+    "writing"
+  ],
+  "skills": "./skills/"
+}

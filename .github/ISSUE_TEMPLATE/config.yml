@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Read the claim index first
+    url: https://github.com/berkshirehathaways/x-algorithm-no-bullshit/blob/main/claims/README.md
+    about: Check whether the claim and evidence boundary are already recorded.

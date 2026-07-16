@@ -1,0 +1,46 @@
+name: New claim proposal
+description: Propose a source-pinned claim for the registry
+title: "claim: "
+labels: ["evidence", "new-claim"]
+body:
+  - type: input
+    id: claim
+    attributes:
+      label: Atomic claim
+      description: One proposition only; split current facts, old facts, and unknowns.
+    validations:
+      required: true
+  - type: dropdown
+    id: verdict
+    attributes:
+      label: Verdict
+      options:
+        - confirmed-current
+        - legacy-only
+        - inferred
+        - unsupported
+        - unknown
+        - contradicted
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Commit-pinned primary-source URL
+      description: Include a full SHA and exact line range.
+    validations:
+      required: true
+  - type: textarea
+    id: implication
+    attributes:
+      label: Practical implication
+      description: No guaranteed reach, fabricated score, or engagement multiplier.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence summary and limits
+      description: Explain what the source establishes and what remains unknown.
+    validations:
+      required: true

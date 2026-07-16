@@ -1,0 +1,25 @@
+{
+  "schema_version": "x_post.optimize.v1",
+  "operation": "draft",
+  "brief": {
+    "audience": "Engineers comparing public X ranking code with production claims",
+    "goal": "Correct false precision about the public For You source and invite evidence-led discussion",
+    "topic": "Public RankingScorer boundaries",
+    "language": "en",
+    "voice": ["direct", "technical"],
+    "constraints": ["Do not predict performance", "Do not promise virality", "Keep production uncertainty explicit"]
+  },
+  "claim_ids": [
+    "current-ranker-22-score-terms",
+    "runtime-ranking-weights-not-public-values",
+    "current-numeric-ranking-weights"
+  ],
+  "source_draft": null,
+  "freshness_policy": {
+    "as_of": "2026-07-16",
+    "max_age_days": 30,
+    "require_current_source": true
+  },
+  "variant_count": 2,
+  "extensions": {}
+}

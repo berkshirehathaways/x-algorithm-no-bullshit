@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/berkshirehathaways/x-algorithm-no-bullshit/blob/main/contracts/x-post-optimize.request.schema.json",
+  "title": "x_post.optimize.v1 request",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "operation",
+    "brief",
+    "claim_ids",
+    "source_draft",
+    "freshness_policy",
+    "variant_count",
+    "extensions"
+  ],
+  "properties": {
+    "schema_version": { "const": "x_post.optimize.v1" },
+    "operation": { "enum": ["draft", "review"] },
+    "brief": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["audience", "goal", "topic", "language", "voice", "constraints"],
+      "properties": {
+        "audience": { "type": "string", "minLength": 1 },
+        "goal": { "type": "string", "minLength": 1 },
+        "topic": { "type": "string", "minLength": 1 },
+        "language": { "type": "string", "minLength": 1 },
+        "voice": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+        "constraints": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true }
+      }
+    },
+    "claim_ids": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+    "source_draft": { "type": ["string", "null"] },
+    "freshness_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["as_of", "max_age_days", "require_current_source"],
+      "properties": {
+        "as_of": { "type": "string", "format": "date" },
+        "max_age_days": { "type": "integer", "minimum": 0 },
+        "require_current_source": { "type": "boolean" }
+      }
+    },
+    "variant_count": { "type": "integer", "minimum": 1 },
+    "extensions": { "type": "object" }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "operation": { "const": "draft" } }, "required": ["operation"] },
+      "then": {
+        "properties": {
+          "source_draft": { "type": "null" },
+          "variant_count": { "minimum": 2 }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "operation": { "const": "review" } }, "required": ["operation"] },
+      "then": { "properties": { "source_draft": { "type": "string", "minLength": 1 } } }
+    }
+  ]
+}

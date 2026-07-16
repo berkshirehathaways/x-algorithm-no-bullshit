@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title description">
+  <title id="title">22 SCORE TERMS</title>
+  <desc id="description">Claim current-ranker-22-score-terms: The current RankingScorer combines 22 named Phoenix score terms.</desc>
+  <rect width="1200" height="630" fill="#090B10"/>
+  <rect x="48" y="48" width="8" height="534" fill="#7C9CFF"/>
+  <text x="88" y="103" fill="#7C9CFF" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" letter-spacing="3">CURRENT RANKINGSCORER</text>
+  <text x="88" y="214" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="73" font-weight="700">22 SCORE TERMS</text>
+  <text x="88" y="299" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="73" font-weight="700">NOT ONE METRIC</text>
+  <line x1="88" y1="345" x2="1112" y2="345" stroke="#3A4150" stroke-width="2"/>
+  <text x="88" y="397" fill="#DCE2EF" font-family="Arial, Helvetica, sans-serif" font-size="27">The scorer combines 22 named Phoenix score terms.</text>
+  <text x="88" y="435" fill="#DCE2EF" font-family="Arial, Helvetica, sans-serif" font-size="27">That is not evidence of published runtime weights.</text>
+  <text x="88" y="501" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="700">CLAIM ID  current-ranker-22-score-terms</text>
+  <text x="88" y="535" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="700">VERDICT  confirmed-current    PIN  0bfc2795</text>
+  <text x="88" y="569" fill="#AEB8CC" font-family="Arial, Helvetica, sans-serif" font-size="16">SOURCE  home-mixer/scorers/ranking_scorer.rs:L12-L34</text>
+</svg>

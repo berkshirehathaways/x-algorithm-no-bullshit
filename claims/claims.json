@@ -1,0 +1,183 @@
+{
+  "schema_version": "1.0.0",
+  "registry_version": "0.1.0",
+  "reviewed_at": "2026-07-16",
+  "upstream": {
+    "repository": "xai-org/x-algorithm",
+    "commit": "0bfc2795d308f90032544322747caacd535f75ae",
+    "checked_at": "2026-07-16"
+  },
+  "claims": [
+    {
+      "id": "weighted-multi-action-ranking",
+      "claim": "The current For You ranker combines predicted engagement actions into a weighted final score.",
+      "verdict": "confirmed-current",
+      "practical_implication": "Optimize for a mix of valuable predicted actions, not one public engagement metric.",
+      "evidence_summary": "The current README states that the final score is a weighted combination of predicted engagements and gives the weighted-sum formula.",
+      "upstream_commit": "0bfc2795d308f90032544322747caacd535f75ae",
+      "sources": [{"repository":"xai-org/x-algorithm","commit":"0bfc2795d308f90032544322747caacd535f75ae","path":"README.md","line_start":286,"line_end":292,"url":"https://github.com/xai-org/x-algorithm/blob/0bfc2795d308f90032544322747caacd535f75ae/README.md#L286-L292"}]
+    },
+    {
+      "id": "current-ranker-22-score-terms",
+      "claim": "The current RankingScorer combines 22 named Phoenix score terms.",
+      "verdict": "confirmed-current",
+      "practical_implication": "Do not reduce current ranking to likes or reuse a shorter action list as exhaustive.",
+      "evidence_summary": "ScoringWeights declares 22 score-term weights and compute_weighted_score applies the corresponding 22 Phoenix score fields.",
+      "upstream_commit": "0bfc2795d308f90032544322747caacd535f75ae",
+      "sources": [{"repository":"xai-org/x-algorithm","commit":"0bfc2795d308f90032544322747caacd535f75ae","path":"home-mixer/scorers/ranking_scorer.rs","line_start":12,"line_end":34,"url":"https://github.com/xai-org/x-algorithm/blob/0bfc2795d308f90032544322747caacd535f75ae/home-mixer/scorers/ranking_scorer.rs#L12-L34"},{"repository":"xai-org/x-algorithm","commit":"0bfc2795d308f90032544322747caacd535f75ae","path":"home-mixer/scorers/ranking_scorer.rs","line_start":146,"line_end":170,"url":"https://github.com/xai-org/x-algorithm/blob/0bfc2795d308f90032544322747caacd535f75ae/home-mixer/scorers/ranking_scorer.rs#L146-L170"}]
+    },
+    {
+      "id": "runtime-ranking-weights-not-public-values",
+      "claim": "The current RankingScorer reads its score-term weights from runtime feature-switch parameters.",
+      "verdict": "confirmed-current",
+      "practical_implication": "Parameter names in public source are not a current numeric weight table.",
+      "evidence_summary": "ScoringWeights is constructed from Params and the server evaluates feature switches per request.",
+      "upstream_commit": "0bfc2795d308f90032544322747caacd535f75ae",
+      "sources": [{"repository":"xai-org/x-algorithm","commit":"0bfc2795d308f90032544322747caacd535f75ae","path":"home-mixer/scorers/ranking_scorer.rs","line_start":41,"line_end":66,"url":"https://github.com/xai-org/x-algorithm/blob/0bfc2795d308f90032544322747caacd535f75ae/home-mixer/scorers/ranking_scorer.rs#L41-L66"},{"repository":"xai-org/x-algorithm","commit":"0bfc2795d308f90032544322747caacd535f75ae","path":"home-mixer/server.rs","line_start":138,"line_end":164,"url":"https://github.com/xai-org/x-algorithm/blob/0bfc2795d308f90032544322747caacd535f75ae/home-mixer/server.rs#L138-L164"}]
+    },
+    {
+      "id": "current-numeric-ranking-weights",
+      "claim": "Current live numeric values for the RankingScorer weights.",
+      "verdict": "unknown",
+      "practical_implication": "Do not publish a numeric 2026 weight table as current fact.",
+      "evidence_summary": "The bounded public snapshot exposes parameter lookups but no definitions or live values for those feature-switch parameters; this does not prove that no additional values exist internally.",
+      "upstream_commit": "0bfc2795d308f90032544322747caacd535f75ae",
+      "sources": [{"repository":"xai-org/x-algorithm","commit":"0bfc2795d308f90032544322747caacd535f75ae","path":"home-mixer/scorers/ranking_scorer.rs","line_start":41,"line_end":66,"url":"https://github.com/xai-org/x-algorithm/blob/0bfc2795d308f90032544322747caacd535f75ae/home-mixer/scorers/ranking_scorer.rs#L41-L66"}]
+    },
+    {
+      "id": "author-diversity-attenuates-repetition",
+      "claim": "Author diversity attenuates repeated-author scores within a feed response.",
+      "verdict": "confirmed-current",
+      "practical_implication": "Repeated posting by one author is not a reliable way to occupy multiple top positions.",
+      "evidence_summary": "The current RankingScorer sorts by weighted score and applies a configurable position-dependent multiplier to repeated authors.",
+      "upstream_commit": "0bfc2795d308f90032544322747caacd535f75ae",
+      "sources": [{"repository":"xai-org/x-algorithm","commit":"0bfc2795d308f90032544322747caacd535f75ae","path":"home-mixer/scorers/ranking_scorer.rs","line_start":186,"line_end":217,"url":"https://github.com/xai-org/x-algorithm/blob/0bfc2795d308f90032544322747caacd535f75ae/home-mixer/scorers/ranking_scorer.rs#L186-L217"}]
+    },
+    {
+      "id": "oon-weighting",
+      "claim": "Out-of-network candidates receive a configurable multiplicative score adjustment.",
+      "verdict": "confirmed-current",
+      "practical_implication": "A post can be relevant and still be affected by its in-network versus out-of-network route.",
+      "evidence_summary": "The ranking scorer computes an effective OON weight and multiplies scores for candidates marked out-of-network.",
+      "upstream_commit": "0bfc2795d308f90032544322747caacd535f75ae",
+      "sources": [{"repository":"xai-org/x-algorithm","commit":"0bfc2795d308f90032544322747caacd535f75ae","path":"home-mixer/scorers/ranking_scorer.rs","line_start":220,"line_end":238,"url":"https://github.com/xai-org/x-algorithm/blob/0bfc2795d308f90032544322747caacd535f75ae/home-mixer/scorers/ranking_scorer.rs#L220-L238"},{"repository":"xai-org/x-algorithm","commit":"0bfc2795d308f90032544322747caacd535f75ae","path":"home-mixer/scorers/ranking_scorer.rs","line_start":263,"line_end":280,"url":"https://github.com/xai-org/x-algorithm/blob/0bfc2795d308f90032544322747caacd535f75ae/home-mixer/scorers/ranking_scorer.rs#L263-L280"}]
+    },
+    {
+      "id": "candidate-isolation",
+      "claim": "Phoenix masks candidate-to-candidate attention while retaining each candidate's self-attention.",
+      "verdict": "confirmed-current",
+      "practical_implication": "A candidate's model score is designed not to depend on the other candidates batched beside it.",
+      "evidence_summary": "The attention-mask implementation zeros the candidate block and restores its diagonal; README documents the resulting isolation.",
+      "upstream_commit": "0bfc2795d308f90032544322747caacd535f75ae",
+      "sources": [{"repository":"xai-org/x-algorithm","commit":"0bfc2795d308f90032544322747caacd535f75ae","path":"phoenix/grok.py","line_start":63,"line_end":69,"url":"https://github.com/xai-org/x-algorithm/blob/0bfc2795d308f90032544322747caacd535f75ae/phoenix/grok.py#L63-L69"}]
+    },
+    {
+      "id": "frozen-mini-model-is-not-production-proof",
+      "claim": "The released Phoenix checkpoint is a frozen mini model, while production uses a larger model trained continuously.",
+      "verdict": "confirmed-current",
+      "practical_implication": "Use the bundled model for reproducible demonstrations, not as a production-equivalent ranker.",
+      "evidence_summary": "The Phoenix README explicitly distinguishes the smaller frozen release from the larger continuously trained production model.",
+      "upstream_commit": "0bfc2795d308f90032544322747caacd535f75ae",
+      "sources": [{"repository":"xai-org/x-algorithm","commit":"0bfc2795d308f90032544322747caacd535f75ae","path":"phoenix/README.md","line_start":27,"line_end":31,"url":"https://github.com/xai-org/x-algorithm/blob/0bfc2795d308f90032544322747caacd535f75ae/phoenix/README.md#L27-L31"}]
+    },
+    {
+      "id": "banger-threshold-and-rubric",
+      "claim": "The public banger initial screen marks quality scores greater than or equal to 0.4 as positive.",
+      "verdict": "confirmed-current",
+      "practical_implication": "The threshold is observable, but it is not itself a content recipe.",
+      "evidence_summary": "The classifier records quality_score and sets banger_initial_positive when score >= 0.4.",
+      "upstream_commit": "0bfc2795d308f90032544322747caacd535f75ae",
+      "sources": [{"repository":"xai-org/x-algorithm","commit":"0bfc2795d308f90032544322747caacd535f75ae","path":"grox/classifiers/content/banger_initial_screen.py","line_start":102,"line_end":129,"url":"https://github.com/xai-org/x-algorithm/blob/0bfc2795d308f90032544322747caacd535f75ae/grox/classifiers/content/banger_initial_screen.py#L102-L129"}]
+    },
+    {
+      "id": "banger-quality-rubric",
+      "claim": "The qualitative rubric used to produce the banger quality score.",
+      "verdict": "unknown",
+      "practical_implication": "Do not reverse-engineer a guaranteed writing formula from the 0.4 cutoff.",
+      "evidence_summary": "The classifier imports and renders BangerMiniVlmScreenScore from a prompt template that is not present in the bounded public tree.",
+      "upstream_commit": "0bfc2795d308f90032544322747caacd535f75ae",
+      "sources": [{"repository":"xai-org/x-algorithm","commit":"0bfc2795d308f90032544322747caacd535f75ae","path":"grox/classifiers/content/banger_initial_screen.py","line_start":11,"line_end":64,"url":"https://github.com/xai-org/x-algorithm/blob/0bfc2795d308f90032544322747caacd535f75ae/grox/classifiers/content/banger_initial_screen.py#L11-L64"}]
+    },
+    {
+      "id": "previously-seen-filtering",
+      "claim": "The documented current pipeline filters previously seen posts and posts already served in the session before scoring.",
+      "verdict": "confirmed-current",
+      "practical_implication": "Repeated exposure is constrained; raw engagement alone does not guarantee repeat delivery.",
+      "evidence_summary": "README lists PreviouslySeenPostsFilter and PreviouslyServedPostsFilter among pre-scoring filters.",
+      "upstream_commit": "0bfc2795d308f90032544322747caacd535f75ae",
+      "sources": [{"repository":"xai-org/x-algorithm","commit":"0bfc2795d308f90032544322747caacd535f75ae","path":"README.md","line_start":300,"line_end":312,"url":"https://github.com/xai-org/x-algorithm/blob/0bfc2795d308f90032544322747caacd535f75ae/README.md#L300-L312"}]
+    },
+    {
+      "id": "readme-demo-config-contradiction",
+      "claim": "The top-level and Phoenix READMEs publish one consistent mini-model configuration.",
+      "verdict": "contradicted",
+      "practical_implication": "Treat public model dimensions as artifact- or document-specific until upstream reconciles them.",
+      "evidence_summary": "The top-level release note describes a 256-dimension, 2-layer artifact; the Phoenix release overview describes a 128-dimension, 4-layer mini model.",
+      "upstream_commit": "0bfc2795d308f90032544322747caacd535f75ae",
+      "sources": [{"repository":"xai-org/x-algorithm","commit":"0bfc2795d308f90032544322747caacd535f75ae","path":"README.md","line_start":26,"line_end":32,"url":"https://github.com/xai-org/x-algorithm/blob/0bfc2795d308f90032544322747caacd535f75ae/README.md#L26-L32"},{"repository":"xai-org/x-algorithm","commit":"0bfc2795d308f90032544322747caacd535f75ae","path":"phoenix/README.md","line_start":27,"line_end":31,"url":"https://github.com/xai-org/x-algorithm/blob/0bfc2795d308f90032544322747caacd535f75ae/phoenix/README.md#L27-L31"}]
+    },
+    {
+      "id": "in-network-and-oon-sourcing",
+      "claim": "Current For You sourcing combines followed-account posts with ML-retrieved global-corpus posts.",
+      "verdict": "confirmed-current",
+      "practical_implication": "Follower reach and recommendation reach are separate candidate paths.",
+      "evidence_summary": "README defines Thunder as in-network and Phoenix Retrieval as out-of-network, then says they are ranked together.",
+      "upstream_commit": "0bfc2795d308f90032544322747caacd535f75ae",
+      "sources": [{"repository":"xai-org/x-algorithm","commit":"0bfc2795d308f90032544322747caacd535f75ae","path":"README.md","line_start":47,"line_end":55,"url":"https://github.com/xai-org/x-algorithm/blob/0bfc2795d308f90032544322747caacd535f75ae/README.md#L47-L55"}]
+    },
+    {
+      "id": "reply-75-or-150x",
+      "claim": "The April 2023 Heavy Ranker table assigned 75.0 to reply-engaged-by-author and 0.5 to favorite.",
+      "verdict": "legacy-only",
+      "practical_implication": "The derived 150× ratio describes that dated table, not the current 2026 RankingScorer.",
+      "evidence_summary": "The source explicitly dates the published weights April 5, 2023; the current scorer resolves a different set of runtime parameters.",
+      "upstream_commit": "b85210863f7a94efded0ef5c5ccf4ff42767876c",
+      "sources": [{"repository":"twitter/the-algorithm-ml","commit":"b85210863f7a94efded0ef5c5ccf4ff42767876c","path":"projects/home/recap/README.md","line_start":26,"line_end":40,"url":"https://github.com/twitter/the-algorithm-ml/blob/b85210863f7a94efded0ef5c5ccf4ff42767876c/projects/home/recap/README.md#L26-L40"}]
+    },
+    {
+      "id": "tweepcred-threshold",
+      "claim": "The legacy Follow Recommendations LowTweepCredFollowStore used a TweepCred threshold of 40.",
+      "verdict": "legacy-only",
+      "practical_implication": "Do not convert that historical, different-product threshold into a current For You eligibility rule.",
+      "evidence_summary": "The legacy Follow Recommendations store defines TweepCredThreshold = 40.",
+      "upstream_commit": "c54bec0d4e029fe34926ef3258a86ccacc0d0182",
+      "sources": [{"repository":"twitter/the-algorithm","commit":"c54bec0d4e029fe34926ef3258a86ccacc0d0182","path":"follow-recommendations-service/common/src/main/scala/com/twitter/follow_recommendations/common/stores/LowTweepCredFollowStore.scala","line_start":12,"line_end":38,"url":"https://github.com/twitter/the-algorithm/blob/c54bec0d4e029fe34926ef3258a86ccacc0d0182/follow-recommendations-service/common/src/main/scala/com/twitter/follow_recommendations/common/stores/LowTweepCredFollowStore.scala#L12-L38"}]
+    },
+    {
+      "id": "universal-link-penalty",
+      "claim": "The current public ranking source establishes a universal external-link penalty.",
+      "verdict": "unsupported",
+      "practical_implication": "Do not claim that every external link is algorithmically penalized.",
+      "evidence_summary": "Current documentation describes multi-action prediction and weighted ranking but does not establish a universal link penalty; absence is not proof that no contextual treatment exists.",
+      "upstream_commit": "0bfc2795d308f90032544322747caacd535f75ae",
+      "sources": [{"repository":"xai-org/x-algorithm","commit":"0bfc2795d308f90032544322747caacd535f75ae","path":"home-mixer/scorers/ranking_scorer.rs","line_start":146,"line_end":170,"url":"https://github.com/xai-org/x-algorithm/blob/0bfc2795d308f90032544322747caacd535f75ae/home-mixer/scorers/ranking_scorer.rs#L146-L170"}]
+    },
+    {
+      "id": "fixed-first-30-minute-boost",
+      "claim": "The current public source establishes a fixed first-30-minute ranking boost.",
+      "verdict": "unsupported",
+      "practical_implication": "Avoid presenting a universal 30-minute posting-window boost as fact.",
+      "evidence_summary": "Legacy Home Mixer has a predicate for tweet age at most 30 minutes, but that does not identify a fixed boost or establish current behavior.",
+      "upstream_commit": "c54bec0d4e029fe34926ef3258a86ccacc0d0182",
+      "sources": [{"repository":"twitter/the-algorithm","commit":"c54bec0d4e029fe34926ef3258a86ccacc0d0182","path":"home-mixer/server/src/main/scala/com/twitter/home_mixer/functional_component/decorator/builder/HomeTweetTypePredicates.scala","line_start":232,"line_end":234,"url":"https://github.com/twitter/the-algorithm/blob/c54bec0d4e029fe34926ef3258a86ccacc0d0182/home-mixer/server/src/main/scala/com/twitter/home_mixer/functional_component/decorator/builder/HomeTweetTypePredicates.scala#L232-L234"}]
+    },
+    {
+      "id": "negative-action-downranking",
+      "claim": "The documented weighted score assigns negative actions such as block, mute, and report negative weights.",
+      "verdict": "confirmed-current",
+      "practical_implication": "Avoidance signals can lower ranking; visible engagement alone is incomplete evidence of relevance.",
+      "evidence_summary": "README explicitly states that block, mute, and report have negative weights in the weighted score.",
+      "upstream_commit": "0bfc2795d308f90032544322747caacd535f75ae",
+      "sources": [{"repository":"xai-org/x-algorithm","commit":"0bfc2795d308f90032544322747caacd535f75ae","path":"README.md","line_start":286,"line_end":292,"url":"https://github.com/xai-org/x-algorithm/blob/0bfc2795d308f90032544322747caacd535f75ae/README.md#L286-L292"}]
+    },
+    {
+      "id": "public-grox-orchestration-limits",
+      "claim": "Standalone reproducibility of complete Grox/Rust production orchestration from the published snapshot.",
+      "verdict": "unknown",
+      "practical_implication": "Do not promise that all published components reproduce production orchestration.",
+      "evidence_summary": "The README documents Phoenix as a runnable end-to-end pipeline but does not establish equivalent standalone runnability for the complete Grox/Rust production path.",
+      "upstream_commit": "0bfc2795d308f90032544322747caacd535f75ae",
+      "sources": [{"repository":"xai-org/x-algorithm","commit":"0bfc2795d308f90032544322747caacd535f75ae","path":"README.md","line_start":28,"line_end":34,"url":"https://github.com/xai-org/x-algorithm/blob/0bfc2795d308f90032544322747caacd535f75ae/README.md#L28-L34"}]
+    }
+  ]
+}

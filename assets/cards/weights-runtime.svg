@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title description">
+  <title id="title">LIVE NUMERIC WEIGHTS</title>
+  <desc id="description">Claim current-numeric-ranking-weights: Current live numeric values for the RankingScorer weights.</desc>
+  <rect width="1200" height="630" fill="#090B10"/>
+  <rect x="48" y="48" width="8" height="534" fill="#B680FF"/>
+  <text x="88" y="103" fill="#B680FF" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" letter-spacing="3">BOUNDED PUBLIC SOURCE</text>
+  <text x="88" y="214" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="73" font-weight="700">LIVE NUMERIC WEIGHTS</text>
+  <text x="88" y="299" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="73" font-weight="700">NOT ESTABLISHED</text>
+  <line x1="88" y1="345" x2="1112" y2="345" stroke="#3A4150" stroke-width="2"/>
+  <text x="88" y="397" fill="#DCE2EF" font-family="Arial, Helvetica, sans-serif" font-size="27">Public code reads score-term weights from runtime Params.</text>
+  <text x="88" y="435" fill="#DCE2EF" font-family="Arial, Helvetica, sans-serif" font-size="27">The bounded snapshot does not establish their live values.</text>
+  <text x="88" y="501" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="700">CLAIM ID  current-numeric-ranking-weights</text>
+  <text x="88" y="535" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="700">VERDICT  unknown    PIN  0bfc2795</text>
+  <text x="88" y="569" fill="#AEB8CC" font-family="Arial, Helvetica, sans-serif" font-size="16">SOURCE  home-mixer/scorers/ranking_scorer.rs:L41-L66</text>
+</svg>
