@@ -11,6 +11,7 @@
 
 <p align="center">
   <a href="https://github.com/berkshirehathaways/x-algorithm-no-bullshit/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/berkshirehathaways/x-algorithm-no-bullshit/actions/workflows/ci.yml/badge.svg"></a>
+  <a href="https://github.com/berkshirehathaways/x-algorithm-no-bullshit/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/berkshirehathaways/x-algorithm-no-bullshit?color=b680ff"></a>
   <a href="LICENSE"><img alt="MIT" src="https://img.shields.io/badge/license-MIT-6cf5d2"></a>
   <a href="claims/claims.json"><img alt="19 evidence receipts" src="https://img.shields.io/badge/evidence-19%20source--pinned%20claims-b680ff"></a>
 </p>
